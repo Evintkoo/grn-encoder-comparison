@@ -2,109 +2,179 @@
   "status": "in-progress",
   "nodes": {
     "dual-encoder-two-tower": {
-      "status": "done"
+      "status": "done",
+      "title": "Dual-encoder (two-tower)",
+      "description": "Encodes each TF and gene independently, then scores the pair via cosine similarity of the two encodings."
     },
     "cross-encoder-joint": {
-      "status": "done"
+      "status": "done",
+      "title": "Cross-encoder",
+      "description": "Concatenates TF-gene features and processes them jointly through shared layers before scoring, allowing direct feature interaction."
     },
     "balanced-baseline": {
-      "status": "done"
+      "status": "done",
+      "title": "Balanced (1:1) baseline",
+      "description": "Cross-encoder scores 0.9025 AUROC versus 0.7941 for the dual-encoder, a 10.84pp gap even with identical parameter counts \u2014 later traced by <inode id=\"joint-encoding-ablation\">ablation to joint encoding itself</inode> rather than any specific interaction term."
     },
     "moderate-imbalance-5-1-10-1": {
-      "status": "done"
+      "status": "done",
+      "title": "Moderate imbalance (5:1, 10:1)",
+      "description": "The dual-encoder degrades to roughly 0.694 and 0.658 AUROC while the cross-encoder stays near 0.911, widening the gap to over 25pp at 10:1."
     },
     "severe-imbalance": {
-      "status": "done"
+      "status": "done",
+      "title": "Severe imbalance (50:1)",
+      "description": "The dual-encoder collapses entirely at this realistic ratio, while the cross-encoder remains stable, a critical difference for real regulatory databases dominated by non-interacting pairs."
     },
     "joint-encoding-ablation": {
-      "status": "done"
+      "status": "done",
+      "title": "Joint encoding vs interaction term",
+      "description": "Ablation shows 95% of the cross-encoder's AUROC advantage comes from processing the pair jointly, with only 5% attributable to the element-wise product interaction term."
     },
     "structured-pruning": {
-      "status": "done"
+      "status": "done",
+      "title": "Structured neuron pruning",
+      "description": "Both architectures tolerate at least 60% neuron removal without post-hoc performance loss, indicating substantial over-parameterization at 5.58M."
     },
     "effective-rank-analysis": {
-      "status": "in-progress"
+      "status": "in-progress",
+      "title": "Effective rank analysis",
+      "description": "Measures the intrinsic dimensionality of each model's learned representations to gauge representational efficiency."
     },
     "cold-start-eval": {
-      "status": "in-progress"
+      "status": "in-progress",
+      "title": "Cold-start evaluation",
+      "description": "The dual-encoder's <inode id=\"dual-encoder-two-tower\">independently encoded TF and gene representations</inode> give it a modest edge generalizing to unseen TFs or genes, since it doesn't rely solely on pair-specific learning."
     },
     "transductive-limitation": {
-      "status": "done"
+      "status": "done",
+      "title": "Transductive limitation",
+      "description": "The cross-encoder's <inode id=\"cross-encoder-joint\">joint processing of concatenated TF-gene features</inode> is inherently transductive, but this rarely matters in practice since most GRN inference tasks already know the entities involved."
     },
     "expression-baseline": {
-      "status": "done"
+      "status": "done",
+      "title": "Expression-only baseline",
+      "description": "A feature-based baseline with no learned embeddings contextualizes how much the neural architectures contribute over simple expression matching."
     },
     "double-sigmoid-vanishing-gradients": {
-      "status": "done"
+      "status": "done",
+      "title": "Double-Sigmoid Vanishing Gradients",
+      "description": "The model squashed its own learning signal twice in the backward pass, leaving almost nothing left to learn from."
     },
     "unstable-gradient-estimator": {
-      "status": "done"
+      "status": "done",
+      "title": "Unstable Gradient Estimator",
+      "description": "A numerically shaky math shortcut produced noisy, unreliable gradient updates during training."
     },
     "gradient-clipping-fix": {
-      "status": "done"
+      "status": "done",
+      "title": "Missing Gradient Clipping",
+      "description": "Updates had no cap on how large they could grow, so some blew up and derailed training entirely."
     },
     "two-tower-modular-mlp": {
-      "status": "done"
+      "status": "done",
+      "title": "Two-Tower (Modular MLP)",
+      "description": "Separate entity and expression encoders combined via dot-product similarity, allowing precomputed representations for fast retrieval."
     },
     "cross-encoder-monolithic-mlp": {
-      "status": "done"
+      "status": "done",
+      "title": "Cross-Encoder (Monolithic MLP)",
+      "description": "Concatenates TF and gene features up front and processes the pair jointly through a shared MLP."
     },
     "shared-training-setup": {
-      "status": "done"
+      "status": "done",
+      "title": "Shared Training Setup",
+      "description": "Both architectures use per-batch Adam with <inode id=\"gradient-clipping-fix\">gradient clipping at a threshold of 5.0</inode> and stable numerics, isolating architecture as the only remaining variable."
     },
     "human-brain-scrna-seq": {
-      "status": "done"
+      "status": "done",
+      "title": "Human Brain scRNA-seq Dataset",
+      "description": "47,388 transcription factor\u2013gene pairs drawn from single-cell RNA-seq data of the human brain."
     },
     "balanced-vs-imbalanced-training": {
-      "status": "done"
+      "status": "done",
+      "title": "Balanced vs 5:1 Imbalanced Training",
+      "description": "A fair 1:1 positive:negative split is compared against a harder 5:1 split that mirrors how rare true regulatory links are in real biology."
     },
     "metrics-and-seeds": {
-      "status": "done"
+      "status": "done",
+      "title": "Metrics and Seeds",
+      "description": "Accuracy, F1, and AUROC are measured over five random seeds with bootstrap confidence intervals."
     },
     "balanced-accuracy-and-auroc": {
-      "status": "done"
+      "status": "done",
+      "title": "Balanced Accuracy and AUROC",
+      "description": "Under the <inode id=\"balanced-vs-imbalanced-training\">fair 1:1 positive:negative split</inode>, the cross-encoder reaches 83.03% accuracy and 0.904 AUROC versus the two-tower's 80.90% accuracy and 0.810 AUROC."
     },
     "imbalance-degradation": {
-      "status": "done"
+      "status": "done",
+      "title": "Imbalance Degradation",
+      "description": "At the <inode id=\"balanced-vs-imbalanced-training\">harder 5:1 imbalanced split</inode> the two-tower loses 6.87 percentage points of accuracy, while the cross-encoder loses only 1.56 points."
     },
     "architecture-not-bugs-drives-the-remaining-gap": {
-      "status": "done"
+      "status": "done",
+      "title": "Architecture, Not Bugs, Drives the Remaining Gap",
+      "description": "After correcting all three gradient bugs, the cross-encoder's joint processing of TF-gene pairs still wins, showing the gap is architectural, not just buggy code."
     },
     "tf-gene-pairs": {
-      "status": "done"
+      "status": "done",
+      "title": "47,388 TF-gene pairs",
+      "description": "Human brain scRNA-seq data paired with regulatory ground truth, split 70/15/15 into training, validation, and test sets."
     },
     "dorothea-trrust-priors": {
-      "status": "done"
+      "status": "done",
+      "title": "DoRothEA & TRRUST priors",
+      "description": "Two curated transcription-factor-target databases supply the ground-truth regulatory links used as labels for the prediction task."
     },
     "entity-tower": {
-      "status": "done"
+      "status": "done",
+      "title": "Entity tower (512-d embeddings)",
+      "description": "Learns a 512-dimensional embedding for each transcription factor and gene, passed through three fully connected layers with batch normalization and dropout."
     },
     "expression-tower": {
-      "status": "done"
+      "status": "done",
+      "title": "Expression tower (11-d profiles)",
+      "description": "Encodes an 11-dimensional cell-type mean expression profile through the same three-layer structure, capturing cell-type-specific activity."
     },
     "temp-scaled-dot-product": {
-      "status": "done"
+      "status": "done",
+      "title": "Temperature-scaled dot product (tau = 0.05)",
+      "description": "Interaction scores come from a dot-product similarity between tower outputs, scaled by a temperature of 0.05 and passed through a sigmoid."
     },
     "adam-l2-training": {
-      "status": "done"
+      "status": "done",
+      "title": "Adam optimizer + L2 regularization",
+      "description": "Trained with the Adam optimizer, L2 regularization (lambda = 0.01), and early stopping with 10-epoch patience."
     },
     "pure-rust-implementation": {
-      "status": "done"
+      "status": "done",
+      "title": "Pure-Rust implementation",
+      "description": "Built from scratch without PyTorch, TensorFlow, or any deep learning framework, forcing explicit numerical decisions that aided reproducibility."
     },
     "five-model-ensemble": {
-      "status": "done"
+      "status": "done",
+      "title": "5-model ensemble",
+      "description": "Averaging predicted probabilities across five independently trained models lifts accuracy from 80.14% to 83.06%."
     },
     "cross-seed-variance": {
-      "status": "done"
+      "status": "done",
+      "title": "Cross-seed variance (CV = 2.06%)",
+      "description": "Re-running training from different random initializations produced only 2.06% coefficient of variation, a stability the <inode id=\"pure-rust-implementation\">pure-Rust, framework-free numerics</inode> likely helped enforce."
     },
     "hyperparameter-tuning-16-1-pp": {
-      "status": "done"
+      "status": "done",
+      "title": "Hyperparameter tuning (+16.1 pp)",
+      "description": "Careful hyperparameter tuning alone accounted for 77% of the total accuracy improvement, more than any architectural change."
     },
     "83-06-accuracy-0-844-auroc": {
-      "status": "done"
+      "status": "done",
+      "title": "83.06% accuracy, 0.844 AUROC",
+      "description": "The <inode id=\"five-model-ensemble\">five-model ensemble</inode> reaches 83.06% accuracy and an AUROC of 0.844 on the 47,388-pair human brain test set."
     },
     "gcan-accuracy-f1-paradox": {
-      "status": "done"
+      "status": "done",
+      "title": "GCAN's accuracy-F1 paradox",
+      "description": "GCAN, a cross-attention baseline, scores a higher 91% accuracy but only a 0.692 F1-score, missing many true regulatory links due to poor recall on imbalanced data."
     }
   }
 }
