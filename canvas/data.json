@@ -4,17 +4,19 @@
     "dual-encoder-two-tower": {
       "status": "done",
       "title": "Dual-encoder (two-tower)",
-      "description": "Encodes each TF and gene independently, then scores the pair via cosine similarity of the two encodings."
+      "description": "Encodes each TF and gene independently, then scores the pair via cosine similarity of the two encodings.",
+      "path": "src/models/two_tower.rs"
     },
     "cross-encoder-joint": {
       "status": "done",
       "title": "Cross-encoder",
-      "description": "Concatenates TF-gene features and processes them jointly through shared layers before scoring, allowing direct feature interaction."
+      "description": "Concatenates TF-gene features and processes them jointly through shared layers before scoring, allowing direct feature interaction.",
+      "path": "src/models/cross_encoder.rs"
     },
     "balanced-baseline": {
       "status": "done",
       "title": "Balanced (1:1) baseline",
-      "description": "Cross-encoder scores 0.9025 AUROC versus 0.7941 for the dual-encoder, a 10.84pp gap even with identical parameter counts \u2014 later traced by <inode id=\"joint-encoding-ablation\">ablation to joint encoding itself</inode> rather than any specific interaction term."
+      "description": "Cross-encoder scores 0.9025 AUROC versus 0.7941 for the dual-encoder, a 10.84pp gap even with identical parameter counts — later traced by <inode id=\"joint-encoding-ablation\">ablation to joint encoding itself</inode> rather than any specific interaction term."
     },
     "moderate-imbalance-5-1-10-1": {
       "status": "done",
@@ -34,12 +36,14 @@
     "structured-pruning": {
       "status": "done",
       "title": "Structured neuron pruning",
-      "description": "Both architectures tolerate at least 60% neuron removal without post-hoc performance loss, indicating substantial over-parameterization at 5.58M."
+      "description": "Both architectures tolerate at least 60% neuron removal without post-hoc performance loss, indicating substantial over-parameterization at 5.58M.",
+      "path": "src/bin/neuron_pruning.rs"
     },
     "effective-rank-analysis": {
       "status": "in-progress",
       "title": "Effective rank analysis",
-      "description": "Measures the intrinsic dimensionality of each model's learned representations to gauge representational efficiency."
+      "description": "Measures the intrinsic dimensionality of each model's learned representations to gauge representational efficiency.",
+      "path": "src/bin/effective_rank_analysis.rs"
     },
     "cold-start-eval": {
       "status": "in-progress",
@@ -89,7 +93,7 @@
     "human-brain-scrna-seq": {
       "status": "done",
       "title": "Human Brain scRNA-seq Dataset",
-      "description": "47,388 transcription factor\u2013gene pairs drawn from single-cell RNA-seq data of the human brain."
+      "description": "47,388 transcription factor–gene pairs drawn from single-cell RNA-seq data of the human brain."
     },
     "balanced-vs-imbalanced-training": {
       "status": "done",
