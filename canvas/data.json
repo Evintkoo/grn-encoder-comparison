@@ -1,5 +1,5 @@
 {
-  "status": "done",
+  "status": "in-progress",
   "nodes": {
     "dual-encoder-two-tower": {
       "status": "done"
@@ -23,10 +23,10 @@
       "status": "done"
     },
     "effective-rank-analysis": {
-      "status": "done"
+      "status": "in-progress"
     },
     "cold-start-eval": {
-      "status": "done"
+      "status": "in-progress"
     },
     "transductive-limitation": {
       "status": "done"
