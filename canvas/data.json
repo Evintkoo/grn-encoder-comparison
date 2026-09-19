@@ -1,3 +1,110 @@
 {
-  "status": "done"
+  "status": "done",
+  "nodes": {
+    "dual-encoder-two-tower": {
+      "status": "done"
+    },
+    "cross-encoder-joint": {
+      "status": "done"
+    },
+    "balanced-baseline": {
+      "status": "done"
+    },
+    "moderate-imbalance-5-1-10-1": {
+      "status": "done"
+    },
+    "severe-imbalance": {
+      "status": "done"
+    },
+    "joint-encoding-ablation": {
+      "status": "done"
+    },
+    "structured-pruning": {
+      "status": "done"
+    },
+    "effective-rank-analysis": {
+      "status": "done"
+    },
+    "cold-start-eval": {
+      "status": "done"
+    },
+    "transductive-limitation": {
+      "status": "done"
+    },
+    "expression-baseline": {
+      "status": "done"
+    },
+    "double-sigmoid-vanishing-gradients": {
+      "status": "done"
+    },
+    "unstable-gradient-estimator": {
+      "status": "done"
+    },
+    "gradient-clipping-fix": {
+      "status": "done"
+    },
+    "two-tower-modular-mlp": {
+      "status": "done"
+    },
+    "cross-encoder-monolithic-mlp": {
+      "status": "done"
+    },
+    "shared-training-setup": {
+      "status": "done"
+    },
+    "human-brain-scrna-seq": {
+      "status": "done"
+    },
+    "balanced-vs-imbalanced-training": {
+      "status": "done"
+    },
+    "metrics-and-seeds": {
+      "status": "done"
+    },
+    "balanced-accuracy-and-auroc": {
+      "status": "done"
+    },
+    "imbalance-degradation": {
+      "status": "done"
+    },
+    "architecture-not-bugs-drives-the-remaining-gap": {
+      "status": "done"
+    },
+    "tf-gene-pairs": {
+      "status": "done"
+    },
+    "dorothea-trrust-priors": {
+      "status": "done"
+    },
+    "entity-tower": {
+      "status": "done"
+    },
+    "expression-tower": {
+      "status": "done"
+    },
+    "temp-scaled-dot-product": {
+      "status": "done"
+    },
+    "adam-l2-training": {
+      "status": "done"
+    },
+    "pure-rust-implementation": {
+      "status": "done"
+    },
+    "five-model-ensemble": {
+      "status": "done"
+    },
+    "cross-seed-variance": {
+      "status": "done"
+    },
+    "hyperparameter-tuning-16-1-pp": {
+      "status": "done"
+    },
+    "83-06-accuracy-0-844-auroc": {
+      "status": "done"
+    },
+    "gcan-accuracy-f1-paradox": {
+      "status": "done"
+    }
+  }
 }
