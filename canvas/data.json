@@ -78,12 +78,14 @@
     "two-tower-modular-mlp": {
       "status": "done",
       "title": "Two-Tower (Modular MLP)",
-      "description": "Separate entity and expression encoders combined via dot-product similarity, allowing precomputed representations for fast retrieval."
+      "description": "Separate entity and expression encoders combined via dot-product similarity, allowing precomputed representations for fast retrieval.",
+      "path": "src/models/two_tower.rs"
     },
     "cross-encoder-monolithic-mlp": {
       "status": "done",
       "title": "Cross-Encoder (Monolithic MLP)",
-      "description": "Concatenates TF and gene features up front and processes the pair jointly through a shared MLP."
+      "description": "Concatenates TF and gene features up front and processes the pair jointly through a shared MLP.",
+      "path": "src/models/cross_encoder.rs"
     },
     "shared-training-setup": {
       "status": "done",
